@@ -1,4 +1,5 @@
 {
+  "name": "rms-platform",
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev",
