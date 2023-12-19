@@ -51,6 +51,7 @@ export default async function SiteHomePage({
   return (
     <>
       <div className="mb-20 w-full">
+        <p>Welcome to /domain page</p>
         {posts.length > 0 ? (
           <div className="mx-auto w-full max-w-screen-xl md:mb-28 lg:w-5/6">
             <Link href={`/${posts[0].slug}`}>

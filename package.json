@@ -1,6 +1,9 @@
 {
   "name": "rms-platform",
   "private": true,
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "scripts": {
     "dev": "prisma generate && next dev",
     "build": "prisma generate && prisma db push && next build",
