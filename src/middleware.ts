@@ -38,7 +38,7 @@ export default async function middleware(req: NextRequest) {
     searchParams.length > 0 ? `?${searchParams}` : ""
   }`;
 
-  // rewrites for app pages
+  // rewrites for app pages E.g. // app.localhost:3000 or app.our_domain.com
   if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
     const session = await getToken({ req });
     if (!session && path !== "/login") {
