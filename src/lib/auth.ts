@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -53,9 +54,9 @@ export const authOptions: NextAuthOptions = {
     session: async ({ session, token }) => {
       session.user = {
         ...session.user,
-        // @ts-expect-error
+        // @ts-expect-error updating session with id
         id: token.sub,
-        // @ts-expect-error
+        // @ts-expect-error updating session with username
         username: token?.user?.username || token?.user?.gh_username,
       };
       return session;

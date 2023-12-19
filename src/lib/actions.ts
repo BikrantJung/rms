@@ -15,7 +15,10 @@ import {
 import { put } from "@vercel/blob";
 import { customAlphabet } from "nanoid";
 import { getBlurDataURL } from "@/lib/utils";
-
+interface IError {
+  message: string;
+  code: string;
+}
 const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
   7,
@@ -49,14 +52,15 @@ export const createSite = async (formData: FormData) => {
       `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
     );
     return response;
-  } catch (error: any) {
-    if (error.code === "P2002") {
+  } catch (error: unknown) {
+    const e = error as { code: string; message: string };
+    if (e.code === "P2002") {
       return {
         error: `This subdomain is already taken`,
       };
     } else {
       return {
-        error: error.message,
+        error: e.message,
       };
     }
   }
@@ -188,14 +192,15 @@ export const updateSite = withSiteAuth(
         (await revalidateTag(`${site.customDomain}-metadata`));
 
       return response;
-    } catch (error: any) {
-      if (error.code === "P2002") {
+    } catch (error: unknown) {
+      const e = error as { code: string; message: string };
+      if (e.code === "P2002") {
         return {
           error: `This ${key} is already taken`,
         };
       } else {
         return {
-          error: error.message,
+          error: e.message,
         };
       }
     }
@@ -215,9 +220,10 @@ export const deleteSite = withSiteAuth(async (_: FormData, site: Site) => {
     response.customDomain &&
       (await revalidateTag(`${site.customDomain}-metadata`));
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const e = error as { code: string; message: string };
     return {
-      error: error.message,
+      error: e.message,
     };
   }
 });
@@ -302,9 +308,10 @@ export const updatePost = async (data: Post) => {
       await revalidateTag(`${post.site?.customDomain}-${post.slug}`));
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const e = error as IError;
     return {
-      error: error.message,
+      error: e.message,
     };
   }
 };
@@ -364,14 +371,15 @@ export const updatePostMetadata = withPostAuth(
         await revalidateTag(`${post.site?.customDomain}-${post.slug}`));
 
       return response;
-    } catch (error: any) {
-      if (error.code === "P2002") {
+    } catch (error: unknown) {
+      const e = error as IError;
+      if (e.code === "P2002") {
         return {
           error: `This slug is already in use`,
         };
       } else {
         return {
-          error: error.message,
+          error: e.message,
         };
       }
     }
@@ -389,9 +397,10 @@ export const deletePost = withPostAuth(async (_: FormData, post: Post) => {
       },
     });
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const e = error as IError;
     return {
-      error: error.message,
+      error: e.message,
     };
   }
 });
@@ -419,14 +428,16 @@ export const editUser = async (
       },
     });
     return response;
-  } catch (error: any) {
-    if (error.code === "P2002") {
+  } catch (error: unknown) {
+    const e = error as IError;
+
+    if (e.code === "P2002") {
       return {
         error: `This ${key} is already in use`,
       };
     } else {
       return {
-        error: error.message,
+        error: e.message,
       };
     }
   }

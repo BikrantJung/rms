@@ -1,17 +1,10 @@
-import { ReactNode, Suspense } from "react";
-import Profile from "@/components/profile";
 import Nav from "@/components/nav";
-import { getSession } from "@/lib/auth";
+import Profile from "@/components/profile";
+import { ReactNode, Suspense } from "react";
 
-export default async function DashboardLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const session = await getSession();
+export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
       <Nav>
         <Suspense fallback={<div>Loading...</div>}>
           <Profile />
