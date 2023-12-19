@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  body {
-    @apply bg-black text-white;
-  }
-}
 @layer base {
   body {
-    @apply bg-white text-black;
+    @apply font-general-sans bg-white text-black dark:bg-black dark:text-white;
   }
 }
 @layer utilities {

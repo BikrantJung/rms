@@ -18,6 +18,11 @@ export const calTitle = localFont({
   weight: "600",
   display: "swap",
 });
+export const generalSans = localFont({
+  src: "./GeneralSans-Variable.ttf",
+  variable: "--font-general-sans",
+  display: "swap",
+});
 export const lora = Lora({
   variable: "--font-title",
   subsets: ["latin"],
@@ -35,4 +40,5 @@ export const fontMapper = {
   "font-cal": calTitle.variable,
   "font-lora": lora.variable,
   "font-work": work.variable,
+  "font-general-sans": generalSans.variable,
 } as Record<string, string>;
