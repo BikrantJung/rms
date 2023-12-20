@@ -21,6 +21,8 @@ module.exports = {
       fontFamily: {
         "general-sans": ["var(--font-general-sans)", ...fontFamily.sans],
         cal: ["var(--font-cal)", ...fontFamily.sans],
+        lora: ["var(--font-lora)", ...fontFamily.sans],
+        work: ["var(--font-work)", ...fontFamily.sans],
       },
       colors: {
         border: "hsl(var(--border))",

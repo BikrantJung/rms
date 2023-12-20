@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { cal, generalSans, inter } from "@/styles/fonts";
+import { cal, generalSans, inter, lora } from "@/styles/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { Providers } from "./providers";
 import { Metadata } from "next";
@@ -13,7 +13,7 @@ const image = "https://vercel.pub/thumbnail.png";
 export const metadata: Metadata = {
   title,
   description,
-  icons: ["https://vercel.pub/favicon.ico"],
+  icons: ["/favicon.ico"],
   openGraph: {
     title,
     description,
@@ -36,7 +36,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(cal.variable, inter.variable, generalSans.variable)}>
+      <body
+        className={cn(
+          cal.variable,
+          inter.variable,
+          generalSans.variable,
+          lora.variable,
+        )}
+      >
         <Providers>
           {children}
           <Analytics />

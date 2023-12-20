@@ -14,7 +14,7 @@ export const cal = localFont({
 
 export const calTitle = localFont({
   src: "./CalSans-SemiBold.otf",
-  variable: "--font-title",
+  variable: "--font-cal-title",
   weight: "600",
   display: "swap",
 });
@@ -24,13 +24,13 @@ export const generalSans = localFont({
   display: "swap",
 });
 export const lora = Lora({
-  variable: "--font-title",
+  variable: "--font-lora",
   subsets: ["latin"],
   weight: "600",
   display: "swap",
 });
 export const work = Work_Sans({
-  variable: "--font-title",
+  variable: "--font-work",
   subsets: ["latin"],
   weight: "600",
   display: "swap",

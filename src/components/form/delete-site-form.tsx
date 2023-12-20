@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { deleteSite } from "@/lib/actions";
 import va from "@vercel/analytics";
+import { Input } from "../ui/input";
 
 export default function DeleteSiteForm({ siteName }: { siteName: string }) {
   const { id } = useParams() as { id: string };
@@ -37,7 +38,7 @@ export default function DeleteSiteForm({ siteName }: { siteName: string }) {
           of your site <b>{siteName}</b> to confirm.
         </p>
 
-        <input
+        <Input
           name="confirm"
           type="text"
           required

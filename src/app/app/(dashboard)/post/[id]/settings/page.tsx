@@ -35,7 +35,7 @@ export default async function PostSettings({
           inputAttrs={{
             name: "slug",
             type: "text",
-            defaultValue: data?.slug!,
+            defaultValue: data?.slug,
             placeholder: "slug",
           }}
           handleSubmit={updatePostMetadata}
@@ -48,12 +48,12 @@ export default async function PostSettings({
           inputAttrs={{
             name: "image",
             type: "file",
-            defaultValue: data?.image!,
+            defaultValue: `${data?.image}`,
           }}
           handleSubmit={updatePostMetadata}
         />
 
-        <DeletePostForm postName={data?.title!} />
+        <DeletePostForm postName={`$data?.title}`} />
       </div>
     </div>
   );

@@ -1,4 +1,7 @@
+import { PageContainer } from "@/components/container";
 import { InlineSnippet } from "@/components/form/domain-configuration";
+import { Navbar } from "@/components/navbar/navbar";
+import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
@@ -13,29 +16,29 @@ export default async function HomePage() {
       ?.replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) ??
     "vercel.pub";
   return (
-    <div className="flex h-screen flex-col items-center justify-center space-y-10 bg-black">
-      <Image
-        width={100}
-        height={100}
-        src="/logo.png"
-        alt="Platforms on Vercel"
-        className="w-24"
-      />
-      <h1 className="font-normal text-white">
-        Welcome to Restaurant Management Platform
-      </h1>
-      <a
-        href={
-          process.env.NODE_ENV === "development"
-            ? "http://app.localhost:3000"
-            : `https://app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-        }
-      >
-        <button className="h-11 rounded bg-white px-4 font-medium text-black">
-          Create your app
-        </button>
-      </a>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
+    <div className="relative min-h-screen">
+      <div className="blob absolute inset-0 -z-10 bg-opacity-60 bg-gradient-to-r from-indigo-100 via-purple-100 to-teal-100 blur-3xl"></div>
+      <PageContainer>
+        <Navbar />
+        <div className="mt-16">
+          <h1 className="text-4xl font-semibold">
+            Restaurant management solution
+          </h1>
+          <h1 className="text-4xl font-semibold">in one place</h1>
+          <p className="text-lg font-medium">
+            Manage your hotels, restaurants, and business from one place.
+          </p>
+          <a
+            href={
+              process.env.NODE_ENV === "development"
+                ? "http://app.localhost:3000"
+                : `https://app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+            }
+          >
+            <Button className="mt-4">Dashboard</Button>
+          </a>
+        </div>
+      </PageContainer>
     </div>
   );
 }

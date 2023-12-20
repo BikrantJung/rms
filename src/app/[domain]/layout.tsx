@@ -57,6 +57,7 @@ export async function generateMetadata({
   };
 }
 
+// This is the custom domain page like: abchotel.localhost:3000, or abc.domain.com
 export default async function SiteLayout({
   params,
   children,
@@ -93,7 +94,7 @@ export default async function SiteLayout({
                 width={40}
               />
             </div>
-            <span className="ml-3 inline-block truncate font-title font-medium">
+            <span className="font-title ml-3 inline-block truncate font-medium">
               {data.name}
             </span>
           </Link>

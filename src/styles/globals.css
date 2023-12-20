@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply font-general-sans bg-black text-white;
+    @apply font-general-sans;
   }
 }
 

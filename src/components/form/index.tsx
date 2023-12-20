@@ -10,6 +10,8 @@ import DomainStatus from "./domain-status";
 import DomainConfiguration from "./domain-configuration";
 import Uploader from "./uploader";
 import va from "@vercel/analytics";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 export default function Form({
   title,
@@ -29,6 +31,7 @@ export default function Form({
     maxLength?: number;
     pattern?: string;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleSubmit: any;
 }) {
   const { id } = useParams() as { id?: string };
@@ -45,6 +48,7 @@ export default function Form({
         ) {
           return;
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
           if (res.error) {
             toast.error(res.error);
@@ -86,7 +90,7 @@ export default function Form({
           </div>
         ) : inputAttrs.name === "subdomain" ? (
           <div className="flex w-full max-w-md">
-            <input
+            <Input
               {...inputAttrs}
               required
               className="z-10 flex-1 rounded-l-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
@@ -97,7 +101,7 @@ export default function Form({
           </div>
         ) : inputAttrs.name === "customDomain" ? (
           <div className="relative flex w-full max-w-md">
-            <input
+            <Input
               {...inputAttrs}
               className="z-10 flex-1 rounded-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
             />
@@ -108,14 +112,14 @@ export default function Form({
             )}
           </div>
         ) : inputAttrs.name === "description" ? (
-          <textarea
+          <Textarea
             {...inputAttrs}
             rows={3}
             required
             className="w-full max-w-xl rounded-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
           />
         ) : (
-          <input
+          <Input
             {...inputAttrs}
             required
             className="w-full max-w-md rounded-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"

@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { deletePost } from "@/lib/actions";
 import va from "@vercel/analytics";
+import { Input } from "../ui/input";
 
 export default function DeletePostForm({ postName }: { postName: string }) {
   const { id } = useParams() as { id: string };
@@ -35,7 +36,7 @@ export default function DeletePostForm({ postName }: { postName: string }) {
           <b>{postName}</b> to confirm.
         </p>
 
-        <input
+        <Input
           name="confirm"
           type="text"
           required
